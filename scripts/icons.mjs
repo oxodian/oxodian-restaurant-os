@@ -1,0 +1,5 @@
+import {deflateSync} from 'node:zlib';
+import {writeFileSync} from 'node:fs';
+function crc(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let k=0;k<8;k++)c=c&1?0xedb88320^(c>>>1):c>>>1;}return (c^0xffffffff)>>>0;}
+function chunk(type,data){const t=Buffer.from(type),length=Buffer.alloc(4),checksum=Buffer.alloc(4);length.writeUInt32BE(data.length);checksum.writeUInt32BE(crc(Buffer.concat([t,data])));return Buffer.concat([length,t,data,checksum]);}
+for(const n of [192,512]){const raw=Buffer.alloc((n*4+1)*n);for(let y=0;y<n;y++)for(let x=0;x<n;x++){const X=x/n,Y=y/n;const border=X>.28&&X<.72&&Y>.3&&Y<.7&&(X<.32||X>.68||Y<.34||Y>.66);const tick=(X>.37&&X<.49&&Math.abs(Y-(X+.08))<.025)||(X>.46&&X<.64&&Math.abs(Y-(1.02-X))<.025);const pixel=border||tick?[7,61,37,255]:[29,189,114,255];const i=y*(n*4+1)+1+x*4;for(let c=0;c<4;c++)raw[i+c]=pixel[c];}const header=Buffer.alloc(13);header.writeUInt32BE(n);header.writeUInt32BE(n,4);header[8]=8;header[9]=6;writeFileSync(new URL('../public/icon-'+n+'.png',import.meta.url),Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',header),chunk('IDAT',deflateSync(raw)),chunk('IEND',Buffer.alloc(0))]));}

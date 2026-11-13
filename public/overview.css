@@ -1,0 +1,230 @@
+/* Overview follows the desktop and mobile dashboard references. */
+#app .overview-layout{background:radial-gradient(ellipse at 89% 4%,#b8efd2 0,transparent 42%),radial-gradient(ellipse at 96% 90%,#e9f4d9 0,transparent 55%),linear-gradient(135deg,#e9f9f2,#d9f3e9);grid-template-columns:clamp(220px,18vw,260px) minmax(0,1fr)}
+#app .overview-layout .main{grid-template-rows:59px minmax(0,1fr)}
+#app .overview-layout .sidebar{padding:16px 22px;gap:19px;background:linear-gradient(140deg,#f7fcf9,#e8f9f4);border-color:#dbefe5}
+#app .overview-layout .sidebar .workspace-card{display:none}
+#app .overview-layout .sidebar .bos-brand-image{max-width:none;width:100%}
+#app .overview-layout .sidebar nav{gap:4px}
+#app .overview-layout .sidebar nav a,#app .overview-layout .sidebar-bottom>a{min-height:47px;font-size:.94rem;color:#15382d}
+#app .overview-layout .sidebar-bottom{margin-top:2px;padding-top:14px;border-top:1px solid #cfe4d7}
+#app .overview-layout .topbar{padding:0 27px;background:#f5fcf8b0;border:0}
+#app .overview-layout .breadcrumb{color:#22483e}
+#app .overview-layout .breadcrumb strong{color:inherit}
+.overview-language{position:relative}
+.overview-language>.ui-icon{position:absolute;top:50%;left:11px;transform:translateY(-50%);width:17px;height:17px;z-index:1;pointer-events:none}
+#app .overview-language .choice-trigger{padding-left:34px;min-height:39px;border-radius:12px}
+.overview-menu{display:none}
+#app .overview-layout .content{gap:14px;padding:10px 24px 22px;scrollbar-width:thin}
+#app .overview-layout .dashboard-welcome{min-height:66px}
+#app .overview-layout .dashboard-welcome h1{font-size:1.68rem;color:#10352a}
+#app .overview-layout .business-greeting{color:#3e5c52;font-size:.95rem;font-weight:650;margin-bottom:3px}
+#app .overview-layout .hero-invoice{min-height:52px;box-shadow:0 6px 12px #13693838;background:linear-gradient(#0c9144,#006032)}
+#app .overview-layout .metrics{gap:12px}
+#app .overview-layout .metric{min-height:119px;padding:11px 17px;gap:4px;border-radius:20px;color:#143c2d;border-width:1px;box-shadow:0 5px 10px #305c3e0d;background:linear-gradient(140deg,#fff,#f3fbf6)}
+#app .overview-layout .metric-sales{background:linear-gradient(140deg,#e5fbe2,#c9edbf)}
+#app .overview-layout .metric-dues{background:linear-gradient(140deg,#fff7db,#ffedaa)}
+#app .overview-layout .metric-label>span:last-child{color:#234639;font-size:.91rem}
+#app .overview-layout .metric-symbol{width:34px;height:34px;border-radius:50%}
+#app .overview-layout .metric-symbol svg{width:24px;height:24px}
+#app .overview-layout .metric strong{font-size:clamp(1.25rem,2.1vw,1.8rem);color:#0d3928}
+#app .overview-layout .metric small{color:#4d685c;font-size:.88rem}
+#app .overview-layout .panel{border:1px solid #fff;background:#fffffff0;border-radius:19px;box-shadow:0 7px 12px #28534216}
+#app .overview-layout .overview-chart{padding:13px 19px 12px;gap:9px}
+.overview-chart .shop-chart-heading{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:9px}
+.overview-chart h2,.overview-layout .recent-invoices h2{display:flex;align-items:center;gap:10px;font-size:1.3rem;color:#10392c;letter-spacing:-.025em}
+.overview-chart h2 svg,.overview-layout .recent-invoices h2 svg{width:27px;height:27px;color:#07823b;flex-shrink:0}
+.overview-chart-options,.overview-chart-controls{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.overview-chart .overview-chart-toggle{display:flex;align-items:center;gap:8px;background:#f5f9f5;border:1px solid #e4eee6;font-weight:650;white-space:nowrap;color:#163d2d}
+.overview-switch-track{display:block;width:40px;height:22px;border-radius:22px;background:#9ea9a1;position:relative;flex-shrink:0}
+.overview-switch-track::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 2px 4px #16342555}
+.overview-chart-toggle[aria-checked=true] .overview-switch-track{background:linear-gradient(#0da04b,#006835)}
+.overview-chart-toggle[aria-checked=true] .overview-switch-track::after{left:21px}
+.overview-chart .shop-range-buttons,.overview-chart .shop-metric-tabs,.overview-chart .shop-chart-switches{border:0;display:flex;flex-wrap:nowrap;gap:3px;border-radius:13px;background:#f0f4f1;padding:2px;min-width:0}
+.overview-chart button{font-size:.82rem;min-height:33px;padding:4px 9px;line-height:1.16;border-radius:10px;white-space:normal}
+.overview-chart .shop-metric-tabs button[aria-pressed=true]{background:linear-gradient(#0d9c49,#006b35);color:white;box-shadow:0 2px 4px #0a69353b}
+.overview-chart .shop-chart-switches button[aria-pressed=true],.overview-chart .shop-range-buttons button[aria-pressed=true]{background:linear-gradient(#effdeb,#d9f3d1);color:#124b29;box-shadow:inset 0 0 0 1px #c8e7c5,0 2px 4px #235d301b}
+.overview-chart-period{display:flex;align-items:center;gap:7px;font-size:.88rem;margin:0;color:#244337}
+.overview-chart-period svg{width:17px;height:17px}
+.overview-chart .shop-chart-summary,.overview-chart .shop-chart-caption{display:none}
+.overview-chart .shop-chart-frame{grid-template-columns:61px minmax(0,1fr);height:137px;gap:4px}
+.overview-chart .shop-chart-plot>svg{height:137px}
+.overview-chart .shop-chart-axis{padding:7px 0 9px;font-size:.78rem}
+.overview-chart .shop-chart-dates{margin-left:64px;font-size:.8rem}
+.overview-chart .shop-comparison-note,.overview-chart .shop-chart-legend{font-size:.75rem;margin:5px 0}
+.overview-chart .shop-chart-legend .legend-current:before{border-color:#098638}
+.overview-chart .shop-chart-legend .legend-previous:before{border-color:#68886d}
+#app .overview-layout .quick-launch{gap:10px}
+#app .overview-layout .quick-launch .launch-button{min-height:52px;font-size:.92rem;padding:8px;background:linear-gradient(#fcfff8,#eaf7e4);border-color:#e1eddd;color:#114024}
+#app .overview-layout .quick-launch .launch-button svg{width:24px;height:24px;color:#097b34}
+#app .overview-layout .recent-invoices{padding:11px 16px 12px;gap:10px}
+.overview-layout .recent-invoices .subtle-link,.overview-view{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid #cce6c8;background:linear-gradient(#f7fff1,#dcf2d4);color:#11482a;font-weight:750;border-radius:9px;padding:4px 10px;min-height:31px;white-space:nowrap}
+.overview-view svg{width:18px;height:18px}
+.overview-invoice-head,.overview-invoice-row{display:grid;grid-template-columns:1.26fr 1.43fr 1.12fr .83fr .73fr .8fr .88fr;gap:7px;align-items:center;padding:5px 10px;font-size:.82rem;min-width:0}
+.overview-invoice-head{background:linear-gradient(#fff7d9,#ffecb1);border-radius:8px;color:#173d2b;font-weight:750}
+.overview-invoice-row:nth-child(odd){background:#f2f7f3}
+.overview-invoice-row>span{min-width:0;overflow-wrap:anywhere}
+.overview-invoice-row small,.overview-invoice-number svg{display:none}
+.overview-invoice-number strong{color:#123c2e}
+.overview-invoice-status .badge{padding:3px 8px;font-size:.8rem}
+.overview-trust{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:14px 7px;background:#f6fff699;border:1px solid white;border-radius:15px;color:#154231}
+.overview-trust li{display:flex;justify-content:center;align-items:center;text-align:center;gap:8px;font-size:.86rem;line-height:1.18;padding:0 6px}
+.overview-trust li+li{border-left:1px solid #b6d2bf}
+.overview-trust svg{width:25px;height:25px;color:#08742f;flex-shrink:0}
+@media(max-width:1100px){
+ #app .overview-layout .main{height:calc(100dvh - 66px);grid-template-rows:52px minmax(0,1fr)}
+ #app .overview-layout .topbar{padding:0 14px;background:#eefbf37d}
+ #app .overview-layout .bos-topbar-brand .bos-brand-image{width:152px;max-height:43px}
+ #app .overview-layout .breadcrumb{max-width:none}
+ .overview-menu{display:grid;place-items:center;min-width:36px;height:36px;border-radius:12px;background:#f6fff1;border:1px solid #cce4d1;font-size:1.35rem;color:#123a2c}
+ #app .overview-layout .content{padding:8px 11px 15px;gap:10px}
+ #app .overview-layout .dashboard-welcome{min-height:48px;flex-direction:row;align-items:center;gap:8px}
+ #app .overview-layout .business-greeting{font-size:1.12rem;font-weight:800;line-height:1.13;color:#10382c}
+ #app .overview-layout .dashboard-welcome h1{font-size:.88rem;font-weight:500;letter-spacing:0;color:#4a645c}
+ #app .overview-layout .hero-invoice{min-height:39px;max-width:none;padding:6px 9px;font-size:.83rem;white-space:normal;flex-shrink:0}
+ #app .overview-layout .hero-invoice svg{width:20px;height:20px}
+ #app .overview-layout .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #app .overview-layout .metric{min-height:65px;padding:7px 9px;gap:4px;border-radius:12px}
+ #app .overview-layout .metric.long-value{grid-column:auto}
+ #app .overview-layout .metric-label{gap:6px;align-items:center}
+ #app .overview-layout .metric-label>span:last-child{font-size:.78rem;line-height:1.12;font-weight:550}
+ #app .overview-layout .metric-symbol{display:grid;width:24px;height:24px;border-radius:8px}
+ #app .overview-layout .metric-symbol svg{width:17px;height:17px}
+ #app .overview-layout .metric strong{margin-left:29px;font-size:clamp(1.03rem,4.25vw,1.4rem);white-space:normal}
+ #app .overview-layout .metric small{display:none}
+ #app .overview-layout .overview-chart{padding:10px;gap:6px;border-radius:14px}
+ .overview-chart h2,.overview-layout .recent-invoices h2{font-size:1.08rem;gap:6px}
+ .overview-chart h2 svg,.overview-layout .recent-invoices h2 svg,.overview-chart-period{display:none}
+ .overview-chart .overview-chart-toggle{font-weight:500;padding:2px 0;background:none;border:0;gap:5px;font-size:.72rem}
+ .overview-switch-track{width:33px;height:19px}.overview-switch-track::after{width:13px;height:13px}.overview-chart-toggle[aria-checked=true] .overview-switch-track::after{left:17px}
+ .overview-chart-options{gap:4px;flex-wrap:wrap;justify-content:flex-end}
+ .overview-chart .shop-range-buttons{display:none}
+ .overview-chart-controls{gap:7px}
+ .overview-chart .shop-metric-tabs,.overview-chart .shop-chart-switches{flex:1}
+ .overview-chart-controls button{flex:1;padding:4px 3px;min-height:27px;font-size:.68rem}
+ .overview-chart .shop-metric-tabs button[aria-pressed=true]{color:#11442a;background:linear-gradient(#f2fdea,#d7f2d0);box-shadow:inset 0 0 0 1px #c8e7c5}
+ .overview-chart .shop-chart-summary{display:flex;gap:8px;align-items:center;margin-top:2px}
+ .overview-chart .shop-chart-summary strong{font-size:1.4rem;color:#123a2d}
+ .overview-chart .shop-growth-badge{font-size:.72rem;padding:3px 6px}
+ .overview-chart .shop-chart-caption{display:block;font-size:.76rem;color:#5b7068}
+ .overview-chart .shop-chart-frame{height:96px;grid-template-columns:39px minmax(0,1fr);gap:3px}
+ .overview-chart .shop-chart-plot>svg{height:96px}
+ .overview-chart .shop-chart-axis{font-size:.63rem;padding:4px 0 5px}
+ .overview-chart .shop-chart-dates{margin-left:42px;font-size:.68rem}
+ #app .overview-layout .quick-launch{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+ #app .overview-layout .quick-launch .launch-button{flex-direction:column;min-height:52px;gap:3px;font-size:.73rem;padding:4px 2px;border-radius:11px}
+ #app .overview-layout .quick-launch .launch-button svg{width:20px;height:20px}
+ #app .overview-layout .recent-invoices{padding:8px 7px;gap:7px;border-radius:14px}
+ .overview-layout .recent-invoices .panel-heading{padding:0 4px}
+ .overview-invoice-head{display:none}
+ .overview-invoice-row{border:1px solid #dfece2;border-radius:9px;margin-top:5px;padding:6px;grid-template-columns:minmax(0,1.7fr) .9fr .85fr .76fr .64fr auto;gap:3px 6px;grid-template-areas:'number date total due status action' 'customer date total due status action';font-size:.63rem;line-height:1.2;background:#fcfffb}
+ .overview-invoice-row:nth-child(odd){background:#f9fdf8}
+ .recent-invoices .overview-invoice-row:nth-child(n+5){display:none}
+ .overview-invoice-row small{display:block;color:#436255;font-size:.61rem;margin-bottom:3px}
+ .overview-invoice-number{grid-area:number}.overview-invoice-customer{grid-area:customer}.overview-invoice-date{grid-area:date}.overview-invoice-total{grid-area:total}.overview-invoice-due{grid-area:due}.overview-invoice-status{grid-area:status}.overview-invoice-action{grid-area:action}
+ .overview-view,.overview-layout .recent-invoices .subtle-link{font-size:.66rem;min-height:25px;padding:3px 5px}
+ .overview-view svg{width:13px;height:13px}
+ .overview-invoice-status .badge{font-size:.61rem;padding:2px 4px}
+ .overview-trust{display:none}
+ #app .overview-layout .mobile-nav{height:66px;border:1px solid #fff;border-radius:18px 18px 0 0;background:#f4fdf5ef;box-shadow:0 -3px 10px #375e3910}
+ #app .overview-layout .mobile-nav a{font-size:.8rem;gap:3px}
+ #app .overview-layout .mobile-nav a.active{background:linear-gradient(145deg,#e4f9dd,#c1edb9);color:#113f28}
+}
+@media(max-width:420px){
+ #app .overview-layout .topbar{padding-inline:10px}
+ #app .overview-layout .bos-topbar-brand .bos-brand-image{width:131px}
+ #app .overview-layout .topbar .choice-picker{min-width:0}
+ #app .overview-layout .overview-language .choice-trigger{font-size:.74rem;padding:5px 7px 5px 28px;min-height:34px}
+ .overview-language>.ui-icon{left:8px;width:14px;height:14px}
+ #app .overview-layout .business-greeting{font-size:.96rem}
+ #app .overview-layout .dashboard-welcome h1{font-size:.76rem}
+ .overview-invoice-row{grid-template-columns:1fr 1fr 1fr auto;grid-template-areas:'number number customer customer' 'date total due status' 'action action action action';gap:4px 5px}
+ .overview-invoice-action{justify-self:end}
+ .overview-invoice-row small,.overview-invoice-row{font-size:.7rem}
+}
+
+@media(max-width:1100px){
+ #app .overview-layout .content{gap:8px}
+ #app .overview-layout .dashboard-welcome{min-height:43px}
+ #app .overview-layout .metric{min-height:60px;padding-block:5px;gap:2px}
+ #app .overview-layout .overview-chart{gap:4px;padding:8px 10px}
+ .overview-chart .overview-chart-toggle{min-height:26px}
+ .overview-chart .overview-chart-controls button{min-height:24px;line-height:1.06}
+ .overview-chart .shop-chart-summary strong{font-size:1.24rem;line-height:1.2}
+ .overview-chart .shop-chart-caption{min-height:0;padding:1px 0;background:none;text-align:left;line-height:1.2}
+ .overview-chart .shop-chart-frame,.overview-chart .shop-chart-plot>svg{height:86px}
+ #app .overview-layout .recent-invoices .subtle-link{min-height:24px;padding:3px 8px}
+ .overview-invoice-row{line-height:1.13;padding:5px;gap:3px 5px}
+ .overview-invoice-date{white-space:nowrap}
+}
+@media(min-width:421px) and (max-width:1100px){.overview-invoice-row{grid-template-columns:minmax(0,1.6fr) max-content .8fr .65fr .6fr auto}.overview-invoice-number svg{display:inline-block;width:14px;height:14px;vertical-align:middle;margin-right:4px;color:#098638}.overview-invoice-action button{font-size:.61rem}}
+@media(min-width:1101px){.overview-invoice-row{padding-block:3px}.overview-invoice-row .overview-view{min-height:28px}}
+
+.catalogue-list .overview-invoice-row {border:1px solid #dfece2;border-radius:9px;margin-top:5px}
+.catalogue-list .overview-view {min-height:44px}
+.catalogue-list .overview-view .ui-icon {width:17px;height:17px;flex:none}
+.catalogue-list .overview-invoice-row:not([hidden]) {display:grid}
+.inventory-compact .overview-invoice-head,.inventory-compact .overview-invoice-row {grid-template-columns:minmax(0,1.65fr) 1fr .9fr .9fr .8fr .7fr minmax(max-content,1fr)}
+.inventory-compact-name,.inventory-compact-actions {display:flex;align-items:center;gap:6px}
+.inventory-compact-name>span:last-child {min-width:0}
+.inventory-compact-name strong,.inventory-compact-name small {display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inventory-compact-name small {display:none}
+.inventory-compact-thumb {display:grid;place-items:center;width:32px;height:32px;flex:none;background:#e4f4e7;color:#09653a;border-radius:7px;overflow:hidden}
+.inventory-compact-thumb img {width:100%;height:100%;object-fit:cover}
+.inventory-compact-thumb .ui-icon {width:18px;height:18px}
+@media(max-width:1100px){
+ .catalogue-list .overview-invoice-row {min-height:54px}
+ .inventory-compact .overview-invoice-row {grid-template-columns:minmax(0,1.8fr) .85fr .7fr auto;grid-template-areas:none;gap:6px}
+ .inventory-compact .inventory-compact-sku,.inventory-compact .inventory-compact-cost,.inventory-compact .inventory-compact-gst {display:none}
+ .inventory-compact .inventory-compact-name small {display:block}
+ .inventory-compact .overview-view {min-width:44px;padding:3px}
+ .inventory-compact .overview-view>span {display:none}
+}
+@media(max-width:420px){
+ .catalogue-list .overview-invoice-row:not(.inventory-compact-row) {
+  grid-template-columns:minmax(0,1fr) max-content max-content max-content 44px;
+  grid-template-areas:'number date total due action' 'customer date total status action';gap:2px 4px
+ }
+ .catalogue-list .overview-invoice-number strong {font-size:.65rem}
+ .catalogue-list .overview-invoice-status>small {display:none}
+ .catalogue-list .overview-invoice-status .badge {white-space:normal}
+ .inventory-compact .overview-invoice-row {grid-template-columns:minmax(0,1.6fr) .8fr .58fr auto;gap:4px}
+ .inventory-compact-thumb {width:26px;height:26px}
+}
+
+@media(max-width:420px){
+ .catalogue-list .overview-invoice-number,.catalogue-list .overview-invoice-customer {white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .catalogue-list .overview-invoice-total,.catalogue-list .overview-invoice-due,.catalogue-list .overview-invoice-status {white-space:nowrap}
+ .catalogue-list .overview-invoice-action .overview-view {width:44px;padding:3px}
+ .catalogue-list .overview-invoice-action .overview-view>span {display:none}
+}
+@media(max-width:360px){
+ .catalogue-list .overview-invoice-row:not(.inventory-compact-row) {font-size:.62rem}
+ .catalogue-list .overview-invoice-number strong {font-size:.6rem}
+}
+@media(min-width:361px) and (max-width:420px){
+ .catalogue-list .overview-invoice-row:not(.inventory-compact-row) {grid-template-columns:minmax(0,1fr) max-content max-content max-content auto}
+ .catalogue-list .overview-invoice-action .overview-view {width:auto;padding-inline:6px}
+ .catalogue-list .overview-invoice-action .overview-view>span {display:inline}
+}
+@media(max-width:1100px){
+ .inventory-compact-name strong {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow-wrap:anywhere}
+ .inventory-compact .inventory-compact-price small,.inventory-compact .inventory-compact-stock small {white-space:nowrap}
+}
+
+#app .workspace-avatar,.workspace-logo-preview {border-radius:50%;overflow:hidden;flex-shrink:0}
+.workspace-avatar img,.workspace-logo-preview {display:block;width:100%;height:100%;object-fit:cover}
+.workspace-logo-preview {width:64px;height:64px;background:#e9f7ec}
+.desktop-workspace-brand {display:none;min-width:0;align-items:center;gap:9px;font-weight:700}
+.desktop-workspace-brand>span:last-child {min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.workspace-logo-fields {display:grid;justify-items:start;gap:8px}
+.workspace-logo-fields [role=status]:empty {display:none}
+.workspace-logo-actions {display:flex;flex-wrap:wrap;gap:6px}
+.business-brand-settings .settings-invoice-logo {padding-top:8px;border-top:1px solid #d2e5d8}
+.profile-crop-tool .photo-crop-canvas {border-radius:50%;background:repeating-conic-gradient(#e7eee8 0% 25%,white 0% 50%) 0 0/16px 16px;outline:2px solid #83b695}
+@media(min-width:1101px){
+ #app .topbar .bos-topbar-brand,#app .topbar .mobile-workspace-avatar {display:none}
+ #app .topbar .desktop-workspace-brand {display:flex}
+}
+@media(max-width:1100px){
+ #app .topbar-right>.mobile-workspace-avatar {display:grid;place-items:center;width:40px;height:40px}
+}

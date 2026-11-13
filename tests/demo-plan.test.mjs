@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {demoPlan,demoAsOf} from '../scripts/demo-plan.mjs';
+test('owner demo has 25 products, 30 buyers, 50 non-uniform sales over seven days and expenses',()=>{const p=demoPlan('2026-11-08');assert.equal(p.products.length,25);assert.equal(p.customers.length,30);assert.equal(p.invoices.length,50);assert.equal(p.days.length,7);assert.equal(new Set(p.invoices.map(x=>x.date)).size,7);assert.equal(new Set(p.invoices.map(x=>x.customer)).size,30);assert.ok(new Set(p.daily.map(x=>x.count)).size>1);assert.ok(p.expenses.length>0);assert.ok(p.invoices.some(x=>x.paid===x.total));assert.ok(p.invoices.some(x=>x.paid===0));assert.ok(p.invoices.some(x=>x.paid>0&&x.paid<x.total));p.products.forEach((product,i)=>assert.ok(product.stock>=p.usage[i]));assert.deepEqual(demoPlan('2026-11-08'),p);});
+test('early-morning demo uses seven completed days instead of future sale times',()=>{assert.equal(demoAsOf(Date.parse('2026-11-08T19:00:00Z')),'2026-11-08');});

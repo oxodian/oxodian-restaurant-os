@@ -1,0 +1,13 @@
+CREATE TABLE business_forms(business_id TEXT NOT NULL REFERENCES businesses(id),kind TEXT NOT NULL,schema TEXT NOT NULL,revision INTEGER NOT NULL DEFAULT 1,PRIMARY KEY(business_id,kind));
+ALTER TABLE invoices ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE customers ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE products ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE suppliers ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE purchases ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE expenses ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE payments ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE inventory_movements ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE businesses ADD COLUMN form_snapshot TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE products ADD COLUMN photo_revision INTEGER NOT NULL DEFAULT 0;
+CREATE TABLE product_photos(business_id TEXT NOT NULL,product_id TEXT NOT NULL,data TEXT NOT NULL CHECK(length(data)<=48000),PRIMARY KEY(business_id,product_id),FOREIGN KEY(business_id,product_id) REFERENCES products(business_id,id));
+CREATE TRIGGER invoice_form_snapshot_locked BEFORE UPDATE OF form_snapshot ON invoices WHEN OLD.status<>'draft' BEGIN SELECT RAISE(ABORT,'Invoice locked'); END;

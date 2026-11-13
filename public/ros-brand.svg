@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="234" viewBox="0 0 840 234">
+<rect x="12" y="12" width="208" height="208" rx="62" fill="#104b36"/>
+<circle cx="116" cy="96" r="51" fill="none" stroke="#dbef9f" stroke-width="9"/>
+<path d="M65 99h102M74 111h84M116 45V33" fill="none" stroke="#dbef9f" stroke-width="9" stroke-linecap="round"/>
+<text x="116" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="41" font-weight="700" fill="#fff">ROS</text>
+<text x="248" y="108" font-family="Arial,sans-serif" font-size="63" font-weight="800" fill="#104b36">RESTAURANT OS</text>
+<text x="251" y="155" font-family="Arial,sans-serif" font-size="34" fill="#345c46">Powered by Oxodian Technology</text>
+</svg>

@@ -1,0 +1,11 @@
+{
+ "name":"oxodian-restaurant-os-preview",
+ "main":"src/worker.mjs",
+ "compatibility_date":"2026-11-08",
+ "workers_dev":false,
+ "preview_urls":false,
+ "routes":[{"pattern":"preview.ros.oxodian.com","custom_domain":true}],
+ "assets":{"directory":"./public","binding":"ASSETS","not_found_handling":"single-page-application","run_worker_first":["/api/*"]},
+ "vars":{"ENVIRONMENT":"ros-preview","QA_REGISTRATION_CLOSED":"1","QA_DEMO_OWNER_EMAIL":"oxodian.lab@gmail.com"},
+ "d1_databases":[{"binding":"DB","database_name":"oxodian-restaurant-os-preview","database_id":"00000000-0000-0000-0000-000000000000","migrations_dir":"migrations"}]
+}

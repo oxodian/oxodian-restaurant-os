@@ -1,0 +1,16 @@
+{
+  "name": "oxodian-restaurant-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "deploy:preview": "wrangler deploy",
+    "db:preview": "wrangler d1 migrations apply DB --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

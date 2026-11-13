@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {matchingBuyers,buyerPhone} from '../public/guided-invoice.js';
+test('buyer search narrows by typed name while preserving duplicate-name profiles and phone identity',()=>{const people=[{id:'a',name:'Arun Das',phone:'919876543210'},{id:'b',name:'Arun Das',phone:'919876543211'},{id:'c',name:'অরুণ দাস',phone:''}];assert.deepEqual(matchingBuyers(people,'ARUN').map(x=>x.id),['a','b']);assert.deepEqual(matchingBuyers(people,'অরুণ').map(x=>x.id),['c']);assert.deepEqual(matchingBuyers(people,'3211').map(x=>x.id),['b']);assert.equal(matchingBuyers(people,'New Buyer').length,0);assert.equal(people.length,3);});
+test('WhatsApp numbers are optional, Indian local numbers gain the country code, and malformed numbers are rejected',()=>{assert.equal(buyerPhone(''),'');assert.equal(buyerPhone('98765 43210'),'919876543210');assert.equal(buyerPhone('+44 7700 900123'),'447700900123');assert.throws(()=>buyerPhone('wrong number'),/invalid_phone/);assert.throws(()=>buyerPhone('123'),/invalid_phone/);});
