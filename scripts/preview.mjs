@@ -3,7 +3,7 @@ import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
-const name='oxodian-restaurant-os-preview';
+const name='oxodian-restaurant-os-preview',databaseName='oxodian-ros-staging';
 const config=JSON.parse(readFileSync(new URL('../wrangler.jsonc',import.meta.url),'utf8'));
 const commands={deploy:['deploy'],migrate:['d1','migrations','apply','DB','--remote']};
 
@@ -13,10 +13,10 @@ export function validatePreview(config,databases){
     config.workers_dev!==false||config.preview_urls!==false||
     config.routes?.length!==1||config.routes[0].pattern!=='preview.ros.oxodian.com'||
     config.routes[0].custom_domain!==true||config.d1_databases?.length!==1||
-    binding?.binding!=='DB'||binding.database_name!==name||
+    binding?.binding!=='DB'||binding.database_name!==databaseName||
     !binding.database_id||binding.database_id==='00000000-0000-0000-0000-000000000000')
   throw Error('Configure the dedicated ROS preview Worker, hostname and D1 database first.');
- if(databases&&!databases.some(db=>db.name===name&&db.uuid===binding.database_id))
+ if(databases&&!databases.some(db=>db.name===databaseName&&db.uuid===binding.database_id))
   throw Error('The configured UUID does not match the dedicated ROS preview database in this Cloudflare account.');
 }
 
