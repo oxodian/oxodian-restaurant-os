@@ -172,5 +172,6 @@ export function mountRestaurant(host,{api,business,owner,staff,products,section,
  });
  host.addEventListener('click',event=>{const button=event.target.closest('button[data-values]');if(button)void submit(button.dataset.endpoint,JSON.parse(button.dataset.values));});
  void refresh(true);
- const timer=setInterval(()=>{if(!host.isConnected)clearInterval(timer);else if(!document.hidden)void refresh();},4000);
+ const interval=section==='orders'||section==='restaurant'||staff?4000:section==='dashboard'||section==='billing'?12000:30000;
+ const timer=setInterval(()=>{if(!host.isConnected)clearInterval(timer);else if(!document.hidden)void refresh();},interval);
 }

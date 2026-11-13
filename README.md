@@ -13,3 +13,7 @@ Use Node 24. Run `npm ci`, `npm run check` and `npm test`. Run `node scripts/res
 Use `npm run db:preview` and `npm run deploy:preview` for an approved preview rollout. Production requires separate credentials, D1, an approved hostname and its own validation. Record the preceding Worker version and D1 bookmark before a release. Roll back code first and assess subsequent writes before restoring a database.
 
 The preview scripts verify that the configured database UUID resolves to the dedicated ROS preview D1 name in the selected Cloudflare account. They also check the Worker name and hostname before running migrations or deploying.
+
+## Tenant isolation
+
+Production uses one dedicated D1 for all restaurants. Staging uses a separate D1. The workspace key is the existing business_id. The server resolves it from the authenticated session and membership. QR requests resolve it from the table token and validate the dining session. Restaurant operations use tenant-prefixed indexes and apply staff table scope inside the state queries. Future per-tenant migration should export business_id-scoped rows in foreign-key order, provision destination storage and verify counts and financial totals before switching a tenant. No per-restaurant databases are provisioned by default.

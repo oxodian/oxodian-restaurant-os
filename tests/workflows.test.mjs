@@ -279,3 +279,20 @@ test('ROS forces restaurant workspaces and ignores the BOS session cookie',async
   assert.equal((await f.call('me','GET',null,result.cookie)).data.business.category,'restaurant');
  }finally{f.db.close();}
 });
+
+test('two restaurants sharing D1 cannot operate each other’s tables or orders',async()=>{
+ const f=fixture();
+ try{
+  const a=await account(f,'ROS North'),b=await account(f,'ROS South');
+  const first=await f.call('restaurant/table','POST',{name:'Table 1'},a);
+  assert.equal(first.status,200);
+  const table=(await f.call('restaurant/state','GET',null,a)).data.tables[0];
+  assert.equal((await f.call('restaurant/state','GET',null,b)).data.tables.length,0);
+  assert.equal((await f.call('restaurant/session','POST',{action:'open',table:table.id},b)).status,404);
+  assert.equal((await f.call('restaurant/assign','POST',{table:table.id,email:''},b)).status,404);
+  assert.equal((await f.call('restaurant/session','POST',{action:'open',table:table.id},a)).status,200);
+  const session=(await f.call('restaurant/state','GET',null,a)).data.tables[0].session;
+  assert.equal((await f.call('invoices','POST',{dining_session:session,paid:0},b,'foreign-bill')).status,409);
+  assert.deepEqual((await f.call('restaurant/reports','GET',null,b)).data.history,[]);
+ }finally{f.db.close();}
+});
