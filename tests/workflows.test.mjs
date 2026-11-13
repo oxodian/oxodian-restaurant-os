@@ -265,3 +265,17 @@ test('restaurant employee permissions are enforced independently and revocation 
   assert.equal((await f.call('restaurant/state','GET',null,employee)).status,401);
  }finally{f.db.close();}
 });
+
+test('ROS forces restaurant workspaces and ignores the BOS session cookie',async()=>{
+ const f=fixture();
+ try{
+  const result=await f.call('register','POST',{name:'ROS QA',category:'retail',email:'ros-qa@example.test',password:'correct horse battery staple'});
+  assert.equal(result.status,201);
+  assert.match(result.cookie,/^ros_session=/);
+  assert.equal((await f.call('me','GET',null,result.cookie.replace('ros_session=','ox_session='))).status,401);
+  const profile=(await f.call('me','GET',null,result.cookie)).data.business;
+  assert.equal(profile.category,'restaurant');
+  assert.equal((await f.call('business','PATCH',{...profile,category:'retail'},result.cookie)).status,200);
+  assert.equal((await f.call('me','GET',null,result.cookie)).data.business.category,'restaurant');
+ }finally{f.db.close();}
+});

@@ -212,7 +212,7 @@ function overviewTrust(){
 const routes={
  restaurant:['products','forms'],orders:['forms'],food:['products'],staff:[],more:[],
  dashboard:['dashboard','invoices'],
- billing:['invoices'],
+ billing:['invoices','forms'],
  inventory:['products'],
  settings:['forms'],
  analytics:['dashboard'],
@@ -323,7 +323,7 @@ function currentRoute(){
 }
 function navigate(route,writeHistory=false){
  if(me?.user.restaurant_staff)route='restaurant';
- if(route==='restaurant'&&me?.business.category!=='restaurant')route='dashboard';
+ if(route==='staff'&&me?.user.role!=='owner')route='restaurant';
  if(!me||!Object.hasOwn(routes,route))return;
  if(writeHistory&&location.hash!=='#'+route)history.pushState(null,'','#'+route);
  page=route;
@@ -337,13 +337,14 @@ function paintRoute(){
   html=page==='dashboard'?`<section class="dashboard-welcome"><div><div class="overview-intro"><p class="business-greeting">${e(me.business.name)}</p><h1>${e(t('business_at_glance'))}</h1></div></div>${button('new_invoice','new-invoice','primary hero-invoice')}</section>`:heading('analytics','',button('new_invoice','new-invoice'));
   html+=`<div class="report-ledger" ${d.available_currencies.length<2?'hidden':''}>${select('report_currency','report_currency',d.available_currencies.map(code=>[code,code]),d.currency)}</div>`+cards(d.summary);
   if(me.business.name.startsWith('Demo Restaurant · ')&&me.business.category==='restaurant')html+='<p class="badge amber">Demo Data</p>';
+  if(page==='dashboard')html+='<section class="panel" id="restaurant-workspace"></section>';
   html+=`<section class="panel sales-panel"></section>`;
-  if(page==='dashboard'&&me.business.category==='restaurant')html+='<section class="panel"><a class="google-button" href="#restaurant">'+e(t('restaurant'))+'</a><div id="restaurant-workspace"></div></section>';
+
   if(page==='dashboard')html+=`<section class="quick-launch" aria-label="${e(t('quick_actions'))}">${button('quick_product','product','launch-button')}${button('quick_buyer','customer','launch-button')}${button('quick_purchase','purchase','launch-button')}${button('quick_expense','expense','launch-button')}</section>`;
   if(page==='dashboard')html+=`<section class="panel recent-invoices"><div class="panel-heading"><h2>${uiIcon('overview').outerHTML}${e(t('recent'))}</h2><a class="subtle-link" href="#billing">${e(t('all'))}</a></div>${overviewInvoices(data.invoices)}</section>${overviewTrust()}`;
   else html+=`<section class="panel"><form id="range-form" class="filter-form">${field('from','from',d.from,'date',true)}${field('to','to',d.to,'date',true)}<button class="soft">${e(t('apply'))}</button></form>${table(['category','amount'],['net_sales','cogs','gross','expenses','gst'].map(k=>[e(t(k)),reportMoney(d.summary[{net_sales:'net_sales',cogs:'cogs',gross:'gross_profit',expenses:'expenses',gst:'tax'}[k]])]))}</section>`;
  }
- if(page==='billing')html=heading('billing','',`<div class="billing-actions">${mayManageInvoices()?button('recycle_bin','invoice-recycle-bin','outline'):''}${button('new_invoice','new-invoice')}</div>`)+`<section class="panel invoice-list-panel"><input class="search" id="search" placeholder="${e(t('search_invoices'))}" aria-label="${e(t('search_invoices'))}">${catalogueView('billing')}<div class="catalogue-list">${overviewInvoices(data.invoices,true)}</div></section>`;
+ if(page==='billing')html=heading('billing','',`<div class="billing-actions">${mayManageInvoices()?button('recycle_bin','invoice-recycle-bin','outline'):''}${button('new_invoice','new-invoice')}</div>`)+`<section class="panel invoice-list-panel"><input class="search" id="search" placeholder="${e(t('search_invoices'))}" aria-label="${e(t('search_invoices'))}">${catalogueView('billing')}<div class="catalogue-list">${overviewInvoices(data.invoices,true)}</div></section><section class="panel" id="restaurant-workspace"></section>`;
  if(page==='inventory')html=heading('inventory','',`<div class="billing-actions"><a class="google-button" href="#purchases">Purchases</a><a class="google-button" href="#suppliers">Suppliers</a>${button('add_product','product')}</div>`)+`<section class="panel"><input class="search" id="search" placeholder="${e(t('search'))}" aria-label="${e(t('search'))}">${catalogueView('inventory')}<div class="catalogue-list">${inventoryList(data.products)}</div></section><section class="panel" id="restaurant-workspace"></section>`;
  if(page==='customers')html=heading('customers','',button('add_customer','customer'))+`<section class="panel"><input class="search" id="search" placeholder="${e(t('search'))}" aria-label="${e(t('search'))}">${table(['name','phone','due','prediction','actions'],data.customers.map(c=>{const prediction=data.predictions.find(x=>x.id===c.id);return [`<strong>${e(c.name)}</strong>${recordExtras(c,t)}`,e(c.phone),money(data.dues.find(x=>x.id===c.id)?.due||0),e(prediction.expected_date||t('insufficient_history')),button('details','customer-details','text-button',`data-id="${c.id}"`)];}))}</section>`;
  if(page==='suppliers')html=heading('suppliers','',button('add_supplier','supplier'))+`<section class="panel">${table(['name','phone','address'],data.suppliers.map(s=>[e(s.name)+recordExtras(s,t),e(s.phone),e(s.address)]))}</section>`;

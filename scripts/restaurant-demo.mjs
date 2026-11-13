@@ -4,7 +4,7 @@ import {resolve,sep,extname} from 'node:path';
 import worker from '../src/worker.mjs';
 import {database} from './database.mjs';
 
-const base='http://127.0.0.1:8793',db=database();
+const base='http://127.0.0.1:8794',db=database();
 const root=resolve('public');
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.webmanifest':'application/manifest+json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const env={DB:db,ENVIRONMENT:'restaurant-demo',ASSETS:{async fetch(request){
@@ -140,6 +140,6 @@ const server=http.createServer(async(req,res)=>{
   res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));
  }catch{res.writeHead(500);res.end('Local preview error');}
 });
-server.listen(8793,'127.0.0.1',()=>console.log(base));
+server.listen(8794,'127.0.0.1',()=>console.log(base));
 
 }
